@@ -112,7 +112,7 @@
                                     <span>"{{$review->review_text}}"</span>
                                     <span  class="clearfix">and gave rating: {{$review->rating}}.</span>
                                     <img src="{{asset('storage/upload/') . '/' . $review->filename }}"
-                                         style="width:500px;height:300px;;">
+                                         style="width:500px;height:300px;" alt=" {{$review->filename }}">
                                 </li>
                             @endforeach
                             {{$reviews ->links()}}
