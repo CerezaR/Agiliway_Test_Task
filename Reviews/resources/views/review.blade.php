@@ -1,6 +1,5 @@
 @extends('layouts.app')
 <link href="{{ asset('css/linkstyle.css') }}" rel="stylesheet" type="text/css" >
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 @section('content')
     <div class="container">
         <div class="row">
@@ -13,7 +12,7 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <div class="card-body">Average point is equal to: 5</div>
+                        <div class="card-body">Average point is equal to: {{$avgStar}}</div>
                     </div>
                 </div>
             </div>
@@ -100,4 +99,27 @@
         </div>
     </div>
 
+    <div class="container" style="margin-top: 50px;">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2" style="margin: auto;">
+                <div class="card" >
+                    <div class="card-header">Reviews list</div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            @foreach($reviews as $review)
+                                <li class="list-group-item">
+                                    <span>{{$review->name}} sent:</span>
+                                    <span>"{{$review->review_text}}"</span>
+                                    <span  class="clearfix">and gave rating: {{$review->rating}}.</span>
+                                    <img src="{{asset('storage/upload/') . '/' . $review->filename }}"
+                                         style="width:500px;height:300px;;">
+                                </li>
+                            @endforeach
+                            {{$reviews ->links()}}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

@@ -26,6 +26,18 @@ class ReviewController extends Controller
         $review->review_text = $request->review_text;
         $review->filename = $filename;
         $review->save();
-        return view('review');
+        $reviews = Review::paginate(5);
+        $avgStar = number_format(Review::avg('rating'), 2, '.', '');
+        return view('review', compact(['reviews', 'avgStar']));
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function read()
+    {
+        $reviews = Review::paginate(5);
+        $avgStar = number_format(Review::avg('rating'), 2, '.', '');
+        return view('review', compact(['reviews', 'avgStar']));
     }
 }

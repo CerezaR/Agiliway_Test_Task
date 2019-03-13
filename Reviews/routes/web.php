@@ -11,8 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('review');
-});
+Route::get('/', 'ReviewController@read');
 
 Route::post('/', 'ReviewController@store');
